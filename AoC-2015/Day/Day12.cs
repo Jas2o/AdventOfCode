@@ -1,11 +1,6 @@
-﻿using System;
-using System.ComponentModel.Design;
-using System.Globalization;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Text;
 
-namespace AoC.Day
-{
+namespace AoC.Day {
     public class Day12
     {
         //Dumb JSON "parsing" without using a library.

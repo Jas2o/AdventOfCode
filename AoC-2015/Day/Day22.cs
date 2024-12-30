@@ -1,10 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
-using static System.Collections.Specialized.BitVector32;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day22
     {
         //private const bool AllowInputWhenQueueEmpty = false;

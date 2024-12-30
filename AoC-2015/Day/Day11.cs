@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day11
     {
         private static char[] banned = ['i', 'o', 'l'];

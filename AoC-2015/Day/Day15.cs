@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
-using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day15
     {
         public static void Run(string file) {

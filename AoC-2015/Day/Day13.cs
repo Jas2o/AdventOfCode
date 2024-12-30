@@ -1,10 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Runtime.Intrinsics.Arm;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day13
     {
         public static void Run(string file) {

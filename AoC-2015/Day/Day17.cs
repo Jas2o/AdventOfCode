@@ -1,9 +1,6 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
+﻿using System.Text;
 
-namespace AoC.Day
-{
+namespace AoC.Day {
     public class Day17
     {
         public static void Run(string file) {
