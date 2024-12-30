@@ -5,8 +5,8 @@ namespace AoC {
         static void Main(string[] args) {
             Console.Title = "Advent of Code 2015";
 
-            int daynum = 19; //Skipped 19
-            bool test = true;
+            int daynum = 25;
+            bool test = false;
 
             bool loop = true;
             string? input = string.Format("{0} {1}", daynum, (test ? "Test" : ""));
