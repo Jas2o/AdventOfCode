@@ -32,7 +32,7 @@
             //Answer: 9962624
         }
 
-        public static string CreateMD5(string input) {
+        private static string CreateMD5(string input) {
             // Use input string to calculate MD5 hash
             using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create()) {
                 byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
