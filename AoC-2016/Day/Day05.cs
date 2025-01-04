@@ -12,10 +12,12 @@ namespace AoC.Day {
             StringBuilder passA = new StringBuilder();
             char[] passB = new char[passwordLength];
 
+            MD5Worker md5worker = new MD5Worker();
+
             int num = 0;
             while (true) {
                 string secret = num.ToString();
-                string output = CreateMD5(input + secret);
+                string output = md5worker.Get(input + secret);
 
                 if (output.Substring(0, 5) == "00000") {
                     Console.WriteLine(output);
@@ -44,12 +46,18 @@ namespace AoC.Day {
             //Answer: 8c35d1ab
         }
 
-        private static string CreateMD5(string input) {
-            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create()) {
+        private class MD5Worker {
+            private System.Security.Cryptography.MD5 md5;
+
+            public MD5Worker() {
+                md5 = System.Security.Cryptography.MD5.Create();
+                //Using create a lot slows it down.
+            }
+
+            public string Get(string input) {
                 byte[] inputBytes = Encoding.ASCII.GetBytes(input);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-                return Convert.ToHexString(hashBytes);
+                return Convert.ToHexString(hashBytes);//.ToLower();
             }
         }
     }

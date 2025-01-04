@@ -1,8 +1,12 @@
-﻿namespace AoC.Day {
+﻿using System.Text;
+
+namespace AoC.Day {
     public class Day04
     {
         public static void Run(string file) {
             Console.WriteLine("Day 4: The Ideal Stocking Stuffer" + Environment.NewLine);
+
+            MD5Worker md5worker = new MD5Worker();
 
             string input = File.ReadAllText(file);
             string answer1 = string.Empty;
@@ -10,7 +14,7 @@
             int num = 0;
             while (true) {
                 string secret = num.ToString();
-                string output = CreateMD5(input + secret);
+                string output = md5worker.Get(input + secret);
 
                 if (answer1 == string.Empty) {
                     if (output.Substring(0, 5) == "00000")
@@ -32,13 +36,18 @@
             //Answer: 9962624
         }
 
-        private static string CreateMD5(string input) {
-            // Use input string to calculate MD5 hash
-            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create()) {
-                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
+        private class MD5Worker {
+            private System.Security.Cryptography.MD5 md5;
 
-                return Convert.ToHexString(hashBytes);
+            public MD5Worker() {
+                md5 = System.Security.Cryptography.MD5.Create();
+                //Using create a lot slows it down.
+            }
+
+            public string Get(string input) {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+                return Convert.ToHexString(hashBytes);//.ToLower();
             }
         }
     }
