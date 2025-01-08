@@ -1,4 +1,6 @@
-﻿namespace AoC.Day {
+﻿using AoC.Shared;
+
+namespace AoC.Day {
     public class Day21
     {
         public static void Run(string file) {
@@ -68,7 +70,7 @@
                 int ops = 0;
                 while (true) {
                     ops++;
-                    string mask = Util.Int32ToString(ops, 8).PadLeft(4, '0');
+                    string mask = Number.IntToString(ops, 8).PadLeft(4, '0');
                     if (mask.Length > 4)
                         throw new Exception();
                     if (mask[0] == '5')

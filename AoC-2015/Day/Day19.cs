@@ -1,4 +1,6 @@
-﻿namespace AoC.Day {
+﻿using AoC.Shared;
+
+namespace AoC.Day {
     public class Day19
     {
         public static void Run(string file) {
@@ -35,7 +37,7 @@
                     List<Tuple<string, string, int, int>> options = listReplacements.FindAll(x => x.Item4 == m).OrderBy(x => x.Item3).ToList();
                     foreach (Tuple<string, string, int, int> option in options) {
                         if (original.Contains(option.Item2)) {
-                            original = ReplaceFirst(original, option.Item2, option.Item1);
+                            original = original.ReplaceFirst(option.Item2, option.Item1);
                             foundReplacement = true;
                             Console.WriteLine(". " + original);
                             part2++;
@@ -74,15 +76,6 @@
                         memory[molecule] = 1;
                 }
             }
-        }
-
-        private static string ReplaceFirst(string original, string find, string replace) {
-            int position = original.IndexOf(find);
-            if (position < 0) {
-                return original;
-            }
-            original = original.Substring(0, position) + replace + original.Substring(position + find.Length);
-            return original;
         }
     }
 }

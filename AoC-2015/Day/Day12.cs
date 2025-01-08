@@ -191,14 +191,5 @@ namespace AoC.Day {
             Console.WriteLine("Part 2: " + part2sum);
             //Answer: 96852
         }
-
-        private static int SbToInt(ref StringBuilder sb) {
-            if (sb.Length == 0)
-                return 0;
-
-            int number = int.Parse(sb.ToString());
-            sb.Clear();
-            return number;
-        }
     }
 }

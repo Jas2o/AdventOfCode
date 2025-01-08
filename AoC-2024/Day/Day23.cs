@@ -1,8 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Globalization;
-using System.Security.Cryptography;
-using System.Text;
+﻿using AoC.Graph;
 
 namespace AoC.Day
 {
@@ -60,7 +56,7 @@ namespace AoC.Day
             //Part 2
             Console.WriteLine("Working on Part 2...");
             List<List<string>> cliques = new List<List<string>>();
-            BronKerbosch(graph, cliques, new List<string>(graph.Keys));
+            BronKerbosch.GetCliques(graph, cliques, new List<string>(graph.Keys));
 
             List<string> biggest = cliques.MaxBy(c => c.Count);
             biggest.Sort();
@@ -71,42 +67,6 @@ namespace AoC.Day
             //Answer: 1170
             Console.WriteLine("Part 2: " + password);
             //Answer: bo,dd,eq,ik,lo,lu,ph,ro,rr,rw,uo,wx,yg
-        }
-
-        //--
-
-        private static void BronKerbosch(Dictionary<string, List<string>> graph, List<List<string>> cliques,
-            List<string> P, List<string> R = null, List<string> X = null) {
-            //Normally the order would be R, P, X however P and X start empty.
-
-            if (R == null)
-                R = new List<string>();
-            if (X == null)
-                X = new List<string>();
-
-            //if P and X are both empty then
-            if (P.Count == 0 && X.Count == 0) {
-                //report R as a maximal clique
-                cliques.Add(R);
-                return;
-            }
-
-            //for each vertex v in P do
-            for (int i = 0; i < P.Count; i++) {
-                string v = P[i];
-                //BronKerbosch1(R ⋃ { v}, P ⋂ N(v), X ⋂ N(v))
-                List<string> newR = new List<string>(R);
-                newR.Add(v);
-                List<string> newP = new List<string>(P.Intersect(graph[v]));
-                List<string> newX = new List<string>(X.Intersect(graph[v]));
-                BronKerbosch(graph, cliques, newP, newR, newX);
-
-                //P:= P \ { v}
-                P.Remove(v);
-
-                //X:= X ⋃ { v}
-                X.Add(v);
-            }
         }
     }
 }

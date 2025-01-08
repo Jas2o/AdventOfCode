@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AoC.Shared;
+using System.Text;
 
 namespace AoC.Day {
     public class Day17
@@ -22,7 +23,7 @@ namespace AoC.Day {
             int ops = 0;
             while(true) {
                 ops++;
-                string mask = Util.Int32ToString(ops, 2).PadLeft(containers.Count, '0');
+                string mask = Number.IntToString(ops, 2).PadLeft(containers.Count, '0');
                 if (mask.Length > containers.Count)
                     break;
 

@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using AoC.MD5;
 
 namespace AoC.Day
 {
@@ -22,7 +22,7 @@ namespace AoC.Day
             bool partB = true;
             int num = 0;
             while (partA || partB) {
-                string md5 = md5worker.Get(salt + num);
+                string md5 = md5worker.GetLower(salt + num);
 
                 if (partA) {
                     //Part 1
@@ -48,7 +48,7 @@ namespace AoC.Day
                 if(partB) {
                     //Part 2
                     for (int stretch = 0; stretch < 2016; stretch++)
-                        md5 = md5worker.Get(md5);
+                        md5 = md5worker.GetLower(md5);
 
                     char triplet = GetFirstTriple(md5);
                     if (triplet != '_') {
@@ -124,21 +124,6 @@ namespace AoC.Day
                 }
             }
             return found.ToArray();
-        }
-
-        private class MD5Worker {
-            private System.Security.Cryptography.MD5 md5;
-        
-            public MD5Worker() {
-                md5 = System.Security.Cryptography.MD5.Create();
-                //Using create a lot slows it down.
-            }
-
-            public string Get(string input) {
-                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
-                return Convert.ToHexString(hashBytes).ToLower();
-            }
         }
     }
 }

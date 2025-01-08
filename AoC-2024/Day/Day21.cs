@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using AoC.Graph;
+using System.Drawing;
 using System.Text;
 
 namespace AoC.Day {
@@ -71,7 +72,7 @@ namespace AoC.Day {
                         DNode nodeStart = nodeNums.Find(n => n.Value == num1);
                         nodeStart.Distance = 0;
 
-                        Dijkstra(nodeNums, nodeVisited);
+                        DNode.Dijkstra(nodeNums, nodeVisited);
 
                         int movesLeft = 0;
                         int movesRight = 0;
@@ -125,7 +126,7 @@ namespace AoC.Day {
                         //Reset
                         nodeNums.AddRange(nodeVisited);
                         nodeVisited.Clear();
-                        ResetDistances(nodeNums);
+                        DNode.ResetDistances(nodeNums);
                     }
 
                     path.Append('A');
@@ -143,7 +144,7 @@ namespace AoC.Day {
                         DNode nodeStart = nodeDirs.Find(n => n.Value == dir1);
                         nodeStart.Distance = 0;
 
-                        Dijkstra(nodeDirs, nodeVisited);
+                        DNode.Dijkstra(nodeDirs, nodeVisited);
 
                         int movesLeft = 0;
                         int movesRight = 0;
@@ -197,7 +198,7 @@ namespace AoC.Day {
                         //Reset
                         nodeDirs.AddRange(nodeVisited);
                         nodeVisited.Clear();
-                        ResetDistances(nodeDirs);
+                        DNode.ResetDistances(nodeDirs);
                     }
 
                     path.Append('A');
@@ -431,75 +432,6 @@ namespace AoC.Day {
 
         private static void DrawLine() {
             Console.WriteLine("---------\r\n");
-        }
-        #endregion
-
-        // Dijkstra copied from 2024 Day 2
-        #region Dijkstra
-        private static void Dijkstra(List<DNode> listUnvisited, List<DNode> listVisited) {
-            bool loop = true;
-            while (loop) {
-                if (listUnvisited.Count == 0) {
-                    loop = false;
-                    break;
-                }
-                DNode currentNode = listUnvisited.MinBy(n => n.Distance);
-                List<DNode> neighbors = GetNeighbors(listUnvisited, currentNode);
-                foreach (DNode nextNode in neighbors) {
-                    if (listVisited.Contains(nextNode))
-                        continue;
-                    int distance = currentNode.Distance + 1;
-                    if (distance < nextNode.Distance) {
-                        nextNode.Distance = distance;
-                        nextNode.Previous = currentNode;
-                    }
-                }
-                listVisited.Add(currentNode);
-                listUnvisited.Remove(currentNode);
-            }
-        }
-
-        private static List<DNode> GetNeighbors(List<DNode> listNodes, DNode? currentNode) {
-            List<DNode> neighbors = new List<DNode>();
-
-            DNode up = listNodes.Find(n => n.X == currentNode.X && n.Y + 1 == currentNode.Y);
-            DNode down = listNodes.Find(n => n.X == currentNode.X && n.Y - 1 == currentNode.Y);
-            DNode left = listNodes.Find(n => n.X + 1 == currentNode.X && n.Y == currentNode.Y);
-            DNode right = listNodes.Find(n => n.X - 1 == currentNode.X && n.Y == currentNode.Y);
-
-            if (up != null) neighbors.Add(up);
-            if (down != null) neighbors.Add(down);
-            if (left != null) neighbors.Add(left);
-            if (right != null) neighbors.Add(right);
-
-            return neighbors;
-        }
-
-        private class DNode {
-            public int X;
-            public int Y;
-            public int Distance;
-            public DNode? Previous;
-            public char Value;
-
-            public DNode(int x, int y, int distance, char value = '.') {
-                X = x;
-                Y = y;
-                Distance = distance;
-                Value = value;
-            }
-
-            public override string ToString() {
-                return string.Format("{0},{1} {2}", X, Y, Value);
-            }
-
-        }
-
-        private static void ResetDistances(List<DNode> nodes) {
-            foreach (DNode node in nodes) {
-                node.Distance = int.MaxValue;
-                node.Previous = null;
-            }
         }
         #endregion
 

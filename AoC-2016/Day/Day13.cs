@@ -1,4 +1,6 @@
-﻿namespace AoC.Day
+﻿using AoC.Graph;
+
+namespace AoC.Day
 {
     public class Day13
     {
@@ -39,14 +41,8 @@
             DNode nodeEnd = nodesSpace.Find(n => n.X == getX && n.Y == getY);
             DNode nodeStart = nodesSpace.Find(n => n.X == startX && n.Y == startY);
             nodeStart.Distance = 0;
-            Dijkstra(nodesSpace, nodeVisited);
-            DNode nodeCurrent = nodeEnd;
-            List<DNode> listPathNormal = new List<DNode>();
-            while (nodeCurrent != null) {
-                nodeCurrent.Value = path;
-                listPathNormal.Add(nodeCurrent);
-                nodeCurrent = nodeCurrent.Previous;
-            }
+            DNode.Dijkstra(nodesSpace, nodeVisited);
+            List<DNode> listPathNormal = DNode.GetPath(nodeEnd, path);
 
             int partA = nodeEnd.Distance;
             List<DNode> within50 = nodeVisited.Where(n => n.Distance <= 50).ToList();
@@ -67,26 +63,6 @@
             //Answer: 90
             Console.WriteLine("Part 2: " + partB);
             //Answer: 135
-        }
-
-        private class DNode {
-            public int X;
-            public int Y;
-            public int Distance;
-            public DNode? Previous;
-            public char Value;
-
-            public DNode(int x, int y, int distance, char value = '.') {
-                X = x;
-                Y = y;
-                Distance = distance;
-                Value = value;
-            }
-
-            public override string ToString() {
-                return string.Format("{0},{1} {2}", X, Y, Value);
-            }
-
         }
 
         private static void DrawMap(List<DNode> list, int maxX, int maxY) {
@@ -110,46 +86,5 @@
             Console.WriteLine();
         }
 
-        // Dijkstra copied from 2024 Day 2, with the MaxValue break added.
-        private static void Dijkstra(List<DNode> listUnvisited, List<DNode> listVisited) {
-            bool loop = true;
-            while (loop) {
-                if (listUnvisited.Count == 0) {
-                    loop = false;
-                    break;
-                }
-                DNode currentNode = listUnvisited.MinBy(n => n.Distance);
-                if (currentNode.Distance == int.MaxValue)
-                    break;
-                List<DNode> neighbors = GetNeighbors(listUnvisited, currentNode);
-                foreach (DNode nextNode in neighbors) {
-                    if (listVisited.Contains(nextNode))
-                        continue;
-                    int distance = currentNode.Distance + 1;
-                    if (distance < nextNode.Distance) {
-                        nextNode.Distance = distance;
-                        nextNode.Previous = currentNode;
-                    }
-                }
-                listVisited.Add(currentNode);
-                listUnvisited.Remove(currentNode);
-            }
-        }
-
-        private static List<DNode> GetNeighbors(List<DNode> listNodes, DNode? currentNode) {
-            List<DNode> neighbors = new List<DNode>();
-
-            DNode up = listNodes.Find(n => n.X == currentNode.X && n.Y + 1 == currentNode.Y);
-            DNode down = listNodes.Find(n => n.X == currentNode.X && n.Y - 1 == currentNode.Y);
-            DNode left = listNodes.Find(n => n.X + 1 == currentNode.X && n.Y == currentNode.Y);
-            DNode right = listNodes.Find(n => n.X - 1 == currentNode.X && n.Y == currentNode.Y);
-
-            if (up != null) neighbors.Add(up);
-            if (down != null) neighbors.Add(down);
-            if (left != null) neighbors.Add(left);
-            if (right != null) neighbors.Add(right);
-
-            return neighbors;
-        }
     }
 }

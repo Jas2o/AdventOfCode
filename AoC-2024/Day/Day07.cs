@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Runtime.Intrinsics.Arm;
+﻿using AoC.Shared;
 using System.Text;
 
 namespace AoC.Day
@@ -47,7 +45,7 @@ namespace AoC.Day
                 int possible = (int)Math.Pow(numBase, bitplaces);
                 for (int ops = 0; ops < possible; ops++) {
                     //string binary = Convert.ToString(ops, numBase).PadLeft(bitplaces, '0');
-                    string mask = Int32ToString(ops, numBase).PadLeft(bitplaces, '0');
+                    string mask = Number.IntToString(ops, numBase).PadLeft(bitplaces, '0');
 
                     StringBuilder vtext = new StringBuilder(values[0].ToString());
 
@@ -111,18 +109,6 @@ namespace AoC.Day
             }
 
             return supertotal;
-        }
-
-        //https://stackoverflow.com/questions/923771/quickest-way-to-convert-a-base-10-number-to-any-base-in-net
-        public static string Int32ToString(int value, int toBase) {
-            string result = string.Empty;
-            do {
-                result = "0123456789ABCDEF"[value % toBase] + result;
-                value /= toBase;
-            }
-            while (value > 0);
-
-            return result;
         }
     }
 }

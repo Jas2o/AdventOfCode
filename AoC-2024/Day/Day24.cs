@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AoC.Shared;
+using System;
 using System.Collections;
 using System.Text;
 
@@ -55,9 +56,9 @@ namespace AoC.Day
                 zb[i] = zs[i].Value == 1;
             //Turn them into numbers.
             long[] xyz = [
-                GetIntFromBitArray(xb),
-                GetIntFromBitArray(yb),
-                GetIntFromBitArray(zb), //this should be same as part1
+                Number.GetIntFromBitArray(xb),
+                Number.GetIntFromBitArray(yb),
+                Number.GetIntFromBitArray(zb), //this should be same as part1
             ];
             Console.WriteLine("     X = {0} // {1}", xyz[0], Convert.ToString(xyz[0], 2));
             Console.WriteLine("     Y = {0} // {1}", xyz[1], Convert.ToString(xyz[1], 2));
@@ -201,12 +202,6 @@ namespace AoC.Day
             //Answer: fcd,fhp,hmk,rvf,tpc,z16,z20,z33
             if (isTest)
                 Console.WriteLine(" (test can have multiple matching answers)");
-        }
-
-        private static long GetIntFromBitArray(BitArray bitArray) {
-            var array = new byte[8];
-            bitArray.CopyTo(array, 0);
-            return BitConverter.ToInt64(array, 0);
         }
 
         private static long Simulate(Queue<string[]> queue, Dictionary<string, int> knownWires, Dictionary<string, string> swap) {

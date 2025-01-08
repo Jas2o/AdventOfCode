@@ -70,4 +70,6 @@
     </Content>
   </ItemGroup>
 
+  <Import Project="..\AoC-Shared\AoC-Shared.projitems" Label="Shared" />
+
 </Project>

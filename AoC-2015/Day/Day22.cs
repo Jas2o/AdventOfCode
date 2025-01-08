@@ -1,4 +1,6 @@
-﻿namespace AoC.Day {
+﻿using AoC.Shared;
+
+namespace AoC.Day {
     public class Day22
     {
         //private const bool AllowInputWhenQueueEmpty = false;
@@ -61,7 +63,7 @@
                 int ops = 0;
                 Console.WriteLine("Easy mode:");
                 while (true) {
-                    string mask = Util.Int32ToString(ops, 5).PadLeft(0, '0');
+                    string mask = Number.IntToString(ops, 5).PadLeft(0, '0');
                     if (mask.Length > 9)
                         break;
 
@@ -91,7 +93,7 @@
                 ops = 5;
                 Console.WriteLine("Hard mode:");
                 while (true) {
-                    string mask = Util.Int32ToString(ops, 5).PadLeft(0, '0');
+                    string mask = Number.IntToString(ops, 5).PadLeft(0, '0');
                     if (mask.Length > 9)
                         break;
 

@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using AoC.MD5;
 
 namespace AoC.Day {
     public class Day04
@@ -14,7 +14,7 @@ namespace AoC.Day {
             int num = 0;
             while (true) {
                 string secret = num.ToString();
-                string output = md5worker.Get(input + secret);
+                string output = md5worker.GetUpper(input + secret);
 
                 if (answer1 == string.Empty) {
                     if (output.Substring(0, 5) == "00000")
@@ -34,21 +34,6 @@ namespace AoC.Day {
             //Answer: 282749
             Console.WriteLine("Part 2: " + answer2);
             //Answer: 9962624
-        }
-
-        private class MD5Worker {
-            private System.Security.Cryptography.MD5 md5;
-
-            public MD5Worker() {
-                md5 = System.Security.Cryptography.MD5.Create();
-                //Using create a lot slows it down.
-            }
-
-            public string Get(string input) {
-                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
-                return Convert.ToHexString(hashBytes);//.ToLower();
-            }
         }
     }
 }

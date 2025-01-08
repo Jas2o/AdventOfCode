@@ -1,4 +1,7 @@
-﻿namespace AoC.Day
+﻿using AoC.Graph;
+using AoC.Shared;
+
+namespace AoC.Day
 {
     public class Day24
     {
@@ -40,19 +43,11 @@
                     DNode node1 = nodesNum[n1];
                     DNode node2 = nodesNum[n2];
 
-                    ResetDistances(nodes);
+                    DNode.ResetDistances(nodes);
                     node1.Distance = 0;
-                    Dijkstra(nodes);
+                    DNode.Dijkstra(nodes);
 
-                    DNode nodeCurrent = node2;
-                    List<DNode> listPathEmptyToGoal = new List<DNode>();
-                    while (nodeCurrent != null) {
-                        if (nodeCurrent.Value == '.')
-                            nodeCurrent.Value = '*';
-                        listPathEmptyToGoal.Add(nodeCurrent);
-                        nodeCurrent = nodeCurrent.Previous;
-                    }
-
+                    List<DNode> listPathEmptyToGoal = DNode.GetPath(node2, '.', '*');
                     paths.Add((node1.Value, node2.Value), listPathEmptyToGoal.Count - 1);
                 }
             }
@@ -67,7 +62,7 @@
             int bestTotal_A = int.MaxValue;
             int bestTotal_B = int.MaxValue;
             char[] otherNums = nodesNum.Select(n => n.Value).Skip(1).ToArray();
-            List<IList<char>> perms = GetPermutations(otherNums);
+            List<IList<char>> perms = Permutations.Get(otherNums);
             foreach (IList<char> perm in perms) {
                 char previous = '0';
                 int total_A = 0;
@@ -93,77 +88,6 @@
             //Answer: 652
         }
 
-        private class DNode {
-            public int X;
-            public int Y;
-            public int Distance;
-            public DNode? Previous;
-            public char Value;
-
-            public DNode(int x, int y, int distance, char value = '.') {
-                X = x;
-                Y = y;
-                Distance = distance;
-                Value = value;
-            }
-
-            public override string ToString() {
-                return string.Format("{0},{1} {2}", X, Y, Value);
-            }
-        }
-
-        private static void Dijkstra(List<DNode> listNodes) {
-            List<DNode> listVisited = new List<DNode>();
-            List<DNode> listUnvisited = new List<DNode>();
-            listUnvisited.AddRange(listNodes);
-
-            bool loop = true;
-            while (loop) {
-                if (listUnvisited.Count == 0) {
-                    loop = false;
-                    break;
-                }
-                DNode currentNode = listUnvisited.MinBy(n => n.Distance);
-                if (currentNode.Distance == int.MaxValue)
-                    break;
-                List<DNode> neighbors = GetNeighbors(listUnvisited, currentNode);
-                foreach (DNode nextNode in neighbors) {
-                    if (listVisited.Contains(nextNode))
-                        continue;
-                    int distance = currentNode.Distance + 1;
-                    if (distance < nextNode.Distance) {
-                        nextNode.Distance = distance;
-                        nextNode.Previous = currentNode;
-                    }
-                }
-                listVisited.Add(currentNode);
-                listUnvisited.Remove(currentNode);
-            }
-        }
-
-        private static List<DNode> GetNeighbors(List<DNode> listNodes, DNode? currentNode) {
-            List<DNode> neighbors = new List<DNode>();
-
-            DNode up = listNodes.Find(n => n.X == currentNode.X && n.Y + 1 == currentNode.Y);
-            DNode down = listNodes.Find(n => n.X == currentNode.X && n.Y - 1 == currentNode.Y);
-            DNode left = listNodes.Find(n => n.X + 1 == currentNode.X && n.Y == currentNode.Y);
-            DNode right = listNodes.Find(n => n.X - 1 == currentNode.X && n.Y == currentNode.Y);
-
-            if (up != null) neighbors.Add(up);
-            if (down != null) neighbors.Add(down);
-            if (left != null) neighbors.Add(left);
-            if (right != null) neighbors.Add(right);
-
-            return neighbors;
-        }
-
-        private static void ResetDistances(List<DNode> nodes) {
-            foreach (DNode node in nodes) {
-                node.Distance = int.MaxValue;
-                node.Previous = null;
-            }
-        }
-
         private static void DrawMap(List<DNode> list, int maxX, int maxY) {
             for (int y = 0; y < maxY; y++) {
                 for (int x = 0; x < maxX; x++) {
@@ -185,34 +109,6 @@
                 Console.WriteLine();
             }
             Console.WriteLine();
-        }
-
-        //https://chadgolden.com/blog/finding-all-the-permutations-of-an-array-in-c-sharp
-        private static List<IList<T>> GetPermutations<T>(T[] input) {
-            var list = new List<IList<T>>();
-            return PermutationsRecursive(input, 0, input.Length - 1, list);
-        }
-
-        private static List<IList<T>> PermutationsRecursive<T>(T[] input, int start, int end, List<IList<T>> list) {
-            if (start == end) {
-                // We have one of our possible n! solutions,
-                // add it to the list.
-                list.Add(new List<T>(input));
-            } else {
-                for (var i = start; i <= end; i++) {
-                    Swap(ref input[start], ref input[i]);
-                    PermutationsRecursive(input, start + 1, end, list);
-                    Swap(ref input[start], ref input[i]);
-                }
-            }
-
-            return list;
-        }
-
-        private static void Swap<T>(ref T a, ref T b) {
-            var temp = a;
-            a = b;
-            b = temp;
         }
     }
 }

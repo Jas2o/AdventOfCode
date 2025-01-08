@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using System.Text;
+﻿using AoC.MD5;
+using System.Drawing;
 
 namespace AoC.Day {
     public class Day17
@@ -17,21 +17,6 @@ namespace AoC.Day {
             //Answer: DURLDRRDRD
             Console.WriteLine("Part 2: " + result.Item2);
             //Answer: 650
-        }
-
-        private class MD5Worker {
-            private System.Security.Cryptography.MD5 md5;
-
-            public MD5Worker() {
-                md5 = System.Security.Cryptography.MD5.Create();
-                //Using create a lot slows it down.
-            }
-
-            public string Get(string input) {
-                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
-                return Convert.ToHexString(hashBytes).ToLower();
-            }
         }
 
         private static Tuple<string, int> SolveWithQueue(string input) {
@@ -65,7 +50,7 @@ namespace AoC.Day {
                     continue;
                 }
 
-                string doors = md5worker.Get(input + path).Substring(0, 4);
+                string doors = md5worker.GetLower(input + path).Substring(0, 4);
                 //Console.WriteLine(doors);
 
                 if(point.Y > 0 && open.Contains(doors[0]))

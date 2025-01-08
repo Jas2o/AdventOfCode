@@ -1,4 +1,6 @@
-﻿namespace AoC.Day {
+﻿using AoC.Shared;
+
+namespace AoC.Day {
     public class Day13
     {
         public static void Run(string file) {
@@ -64,7 +66,7 @@
             int bitplaces = people.Count;
             int possible = (int)Math.Pow(people.Count, bitplaces);
             for (int ops = 0; ops < possible; ops++) {
-                string mask = Util.Int32ToString(ops, people.Count).PadLeft(bitplaces, '0');
+                string mask = Number.IntToString(ops, people.Count).PadLeft(bitplaces, '0');
 
                 bool valid = true;
                 string[] chain = new string[bitplaces + 1];
