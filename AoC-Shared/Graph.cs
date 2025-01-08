@@ -68,6 +68,30 @@
             return neighbors;
         }
 
+        public static List<DNode> GetNeighborsWithDiagonals(List<DNode> listNodes, DNode? currentNode) {
+            List<DNode> neighbors = new List<DNode>();
+
+            DNode up        = listNodes.Find(n => n.X     == currentNode.X && n.Y + 1 == currentNode.Y);
+            DNode upright   = listNodes.Find(n => n.X - 1 == currentNode.X && n.Y + 1 == currentNode.Y);
+            DNode right     = listNodes.Find(n => n.X - 1 == currentNode.X && n.Y     == currentNode.Y);
+            DNode downright = listNodes.Find(n => n.X - 1 == currentNode.X && n.Y - 1 == currentNode.Y);
+            DNode down      = listNodes.Find(n => n.X     == currentNode.X && n.Y - 1 == currentNode.Y);
+            DNode downleft  = listNodes.Find(n => n.X + 1 == currentNode.X && n.Y - 1 == currentNode.Y);
+            DNode left      = listNodes.Find(n => n.X + 1 == currentNode.X && n.Y     == currentNode.Y);
+            DNode upleft    = listNodes.Find(n => n.X + 1 == currentNode.X && n.Y + 1 == currentNode.Y);
+
+            if (up != null) neighbors.Add(up);
+            if (upright != null) neighbors.Add(upright);
+            if (right != null) neighbors.Add(right);
+            if (downright != null) neighbors.Add(downright);
+            if (down != null) neighbors.Add(down);
+            if (downleft != null) neighbors.Add(downleft);
+            if (left != null) neighbors.Add(left);
+            if (upleft != null) neighbors.Add(upleft);
+
+            return neighbors;
+        }
+
         public static void ResetDistances(List<DNode> nodes) {
             foreach (DNode node in nodes) {
                 node.Distance = int.MaxValue;

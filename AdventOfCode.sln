@@ -93,6 +93,7 @@ Global
 		SolutionGuid = {C76549B2-D138-4B92-93D7-5B1E01BBBAC3}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		AoC-Shared\AoC-Shared.projitems*{1cab6f2e-7402-42bf-bf16-11e88705c708}*SharedItemsImports = 5
 		AoC-Shared\AoC-Shared.projitems*{45ad703d-6026-4c72-94ff-ef0cd2e0ee1f}*SharedItemsImports = 5
 		AoC-Shared\AoC-Shared.projitems*{68c63b48-87e7-4de3-8ccc-d244d0849f51}*SharedItemsImports = 5
 		AoC-Shared\AoC-Shared.projitems*{9aba4bf9-a704-41b6-9da3-9f51d7c29a68}*SharedItemsImports = 5

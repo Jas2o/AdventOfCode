@@ -8,4 +8,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <Import Project="..\AoC-Shared\AoC-Shared.projitems" Label="Shared" />
+
 </Project>
