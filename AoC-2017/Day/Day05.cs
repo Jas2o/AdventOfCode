@@ -3,16 +3,45 @@
     public class Day05
     {
         public static void Run(string file) {
-            Console.WriteLine("Day 5: ???" + Environment.NewLine);
+            Console.WriteLine("Day 5: A Maze of Twisty Trampolines, All Alike" + Environment.NewLine);
 
-			string input = File.ReadAllText(file);
+            List<int> nums = new List<int>();
 			string[] lines = File.ReadAllLines(file);
+            foreach (string line in lines) {
+                nums.Add(int.Parse(line));
+            }
 
-			Console.WriteLine();
-            Console.WriteLine("Part 1: " + 0);
-            //Answer: 
-            Console.WriteLine("Part 2: " + 0);
-            //Answer: 
+            int steps_A = 0;
+            int pointer = 0;
+            List<int> temp = nums.ToList();
+            while (true) {
+                if (pointer >= temp.Count)
+                    break;
+                int offset = temp[pointer];
+                temp[pointer]++;
+                pointer += offset;
+                steps_A++;
+            }
+
+            int steps_B = 0;
+            pointer = 0;
+            temp = nums.ToList();
+            while (true) {
+                if (pointer >= temp.Count)
+                    break;
+                int offset = temp[pointer];
+                if (offset >= 3)
+                    temp[pointer]--;
+                else
+                    temp[pointer]++;
+                pointer += offset;
+                steps_B++;
+            }
+
+            Console.WriteLine("Part 1: " + steps_A);
+            //Answer: 373543
+            Console.WriteLine("Part 2: " + steps_B);
+            //Answer: 27502966
         }
     }
 }
