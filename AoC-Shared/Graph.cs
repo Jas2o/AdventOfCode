@@ -19,6 +19,50 @@
             return string.Format("{0},{1} {2}", X, Y, Value);
         }
 
+        public static List<List<DNode>> BFS_GetAllPaths(List<DNode> listNodes, DNode start, DNode end, int depthLimit) {
+            ResetIgnore(listNodes);
+            end.Ignore = true;
+
+            Queue<Tuple<int, List<DNode>>> queueState = new Queue<Tuple<int, List<DNode>>>(); //Depth, state
+            queueState.Enqueue(new Tuple<int, List<DNode>>(end.Distance, new List<DNode>() { end }));
+
+            Dictionary<(DNode, DNode), List<DNode>> results = new Dictionary<(DNode, DNode), List<DNode>>();
+
+            while (queueState.Count > 0) {
+                Tuple<int, List<DNode>> state = queueState.Dequeue();
+                int depth = state.Item1;
+                List<DNode> givenState = state.Item2;
+
+                DNode last = givenState.Last();
+                if (last == start) {
+                    givenState.Reverse();
+                    results.TryAdd((givenState[1], end), givenState);
+                    continue;
+                }
+
+                if (depth > depthLimit)
+                    continue;
+
+                last.Ignore = true;
+                if (!results.Any()) {
+                    List<DNode> neighbours = GetNeighbors(listNodes, last);
+
+                    foreach (DNode neighbour in neighbours) {
+                        if (neighbour.Distance >= depth)
+                            continue;
+                        if (neighbour.Value != '.' && neighbour.Value != start.Value)
+                            continue;
+
+                        List<DNode> copy = givenState.ToList();
+                        copy.Add(neighbour);
+                        queueState.Enqueue(new Tuple<int, List<DNode>>(depth - 1, copy));
+                    }
+                }
+            }
+
+            return results.Values.ToList();
+        }
+
         public static void Dijkstra(List<DNode> listUnvisited, List<DNode> listVisited) {
             //Will move items from Unvisited to Visited
             bool loop = true;
@@ -92,10 +136,24 @@
             return neighbors;
         }
 
+        public static void ResetIgnore(List<DNode> nodes) {
+            foreach (DNode node in nodes) {
+                node.Ignore = false;
+            }
+        }
+
         public static void ResetDistances(List<DNode> nodes) {
             foreach (DNode node in nodes) {
                 node.Distance = int.MaxValue;
                 node.Previous = null;
+            }
+        }
+
+        public static void ResetDistancesAndIgnore(List<DNode> nodes) {
+            foreach (DNode node in nodes) {
+                node.Distance = int.MaxValue;
+                node.Previous = null;
+                node.Ignore = false;
             }
         }
 

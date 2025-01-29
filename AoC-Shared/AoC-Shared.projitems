@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Graph.cs" />
+    <None Include="$(MSBuildThisFileDirectory)Graph_Unused.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Number.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Permutations.cs" />
