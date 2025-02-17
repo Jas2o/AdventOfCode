@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day11
     {
         public static void Run(string file) {
@@ -28,7 +23,8 @@ namespace AoC.Day
                 Console.WriteLine("{0} blinks has {1} stones", blink + 1, count);
             }
             long partA = stones.Sum(x => x.Value);
-            Console.WriteLine("\r\nPart 1: " + partA);
+
+            Console.WriteLine();
 
             blinks = 75;
             for(; blink < blinks; blink++) {
@@ -39,7 +35,7 @@ namespace AoC.Day
             long partB = stones.Sum(x => x.Value);
 
             Console.WriteLine("\r\n");
-
+            Console.WriteLine("Part 1: " + partA);
             //Answer: 212655
             Console.WriteLine("Part 2: " + partB);
             //Answer: 253582809724830

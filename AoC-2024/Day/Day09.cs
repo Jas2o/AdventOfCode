@@ -1,10 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
-using static System.Reflection.Metadata.BlobBuilder;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day09
     {
         public static void Run(string file) {

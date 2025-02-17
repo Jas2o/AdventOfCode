@@ -1,10 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Security.Claims;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day14
     {
         public static void Run(string file) {

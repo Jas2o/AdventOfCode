@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
-namespace AoC.Day
-{
+namespace AoC.Day {
     public class Day15 {
         public static void Run(string file) {
             Console.WriteLine("Day 15: Warehouse Woes" + Environment.NewLine);
@@ -126,8 +119,6 @@ namespace AoC.Day
                     DrawMapV2(listWarehouse2, maxX*2, maxY);
                 }
             }
-
-            Console.WriteLine();
 
             Console.WriteLine("Part 1: " + partA);
             //Answer: 1509074

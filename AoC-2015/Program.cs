@@ -50,7 +50,7 @@ namespace AoC {
                     case 6: Day06.Run(file); break;
                     case 7: Day07.Run(file); break;
                     case 8: Day08.Run(file); break;
-                    case  9: Day09.Run(file); break;
+                    case 9: Day09.Run(file); break;
                     case 10: Day10.Run(file); break;
                     case 11: Day11.Run(file); break;
                     case 12: Day12.Run(file); break;

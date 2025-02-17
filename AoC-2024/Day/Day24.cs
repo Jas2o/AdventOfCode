@@ -1,10 +1,8 @@
 ﻿using AoC.Shared;
-using System;
 using System.Collections;
 using System.Text;
 
-namespace AoC.Day
-{
+namespace AoC.Day {
     public class Day24
     {
         //This one was SUPER difficult for me to comprehend.

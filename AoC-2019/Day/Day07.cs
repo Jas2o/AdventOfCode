@@ -72,7 +72,6 @@ namespace AoC.Day
             //Answer: 76211147 (8,9,6,7,5)
         }
 
-
         private class Amplifier {
             private int[] intcode;
             private int pos;

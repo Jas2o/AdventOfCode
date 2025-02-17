@@ -1,10 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Reflection.PortableExecutable;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day13 {
 
         private static int costA = 3;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Reflection;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day08
     {
         public static void Run(string file) {
@@ -33,8 +27,8 @@ namespace AoC.Day
             }
 
             //Check for antinodes
-            Check(ref mapAntenna, ref mapAntinode, ref dFrequency);
-            DrawMap(ref mapAntenna, ref mapAntinode, false);
+            Check(mapAntenna, mapAntinode, dFrequency);
+            DrawMap(mapAntenna, mapAntinode, false);
             Console.WriteLine();
 
             int partA = 0;
@@ -42,11 +36,7 @@ namespace AoC.Day
                 partA += mapAntinode[y].Count(x => x == 1);
             }
 
-            Console.WriteLine("Part 1: " + partA);
-            //Answer: 344
-
-            Console.WriteLine();
-            DrawMap(ref mapAntenna, ref mapAntinode, true);
+            DrawMap(mapAntenna, mapAntinode, true);
 
             int partB = 0;
             for (int y = 0; y < mapAntinode.Length; y++) {
@@ -54,11 +44,13 @@ namespace AoC.Day
             }
 
             Console.WriteLine();
+            Console.WriteLine("Part 1: " + partA);
+            //Answer: 344
             Console.WriteLine("Part 2: " + partB);
             //Answer: 1182
         }
 
-        private static void Check(ref char[][] mapAntenna, ref byte[][] mapAntinode, ref Dictionary<char, List<int[]>> dFrequency) {
+        private static void Check(char[][] mapAntenna, byte[][] mapAntinode, Dictionary<char, List<int[]>> dFrequency) {
             foreach (KeyValuePair<char, List<int[]>> pair in dFrequency) {
                 //Console.WriteLine(pair.Key);
 
@@ -116,7 +108,7 @@ namespace AoC.Day
             }
         }
 
-        private static void DrawMap(ref char[][] antenna, ref byte[][] antinode, bool isPart2) {
+        private static void DrawMap(char[][] antenna, byte[][] antinode, bool isPart2) {
             for (int y = 0; y < antenna.Length; y++) {
                 for (int x = 0; x < antenna[y].Length; x++) {
                     char c = antenna[y][x];

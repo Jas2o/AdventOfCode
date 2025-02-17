@@ -36,9 +36,9 @@
 
             // Copy the array and check Part 1
             int[][] array = orgArray.Select(s => s.ToArray()).ToArray();
-            bool doesItLoop = PathGuard(ref array, guardStartY, guardStartX);
+            bool doesItLoop = PathGuard(array, guardStartY, guardStartX);
             int uniquePositions = array.Length * array[0].Length;
-            DrawMap(ref array);
+            DrawMap(array);
             foreach (int[] line in array) {
                 uniquePositions -= line.Count(x => x == 0); //Untouched
                 uniquePositions -= line.Count(x => x == -9); //Obstacles
@@ -72,12 +72,12 @@
                         continue;
                     array[y][x] = -9;
 
-                    bool doesItLoopAgain = PathGuard(ref array, guardStartY, guardStartX);
+                    bool doesItLoopAgain = PathGuard(array, guardStartY, guardStartX);
                     if (doesItLoopAgain) {
                         obstructionLoops++;
 
                         if(verbose) {
-                            DrawMap(ref array);
+                            DrawMap(array);
                             if (useWait) {
                                 Thread.Sleep(waitTime);
                             } else {
@@ -95,7 +95,7 @@
             //Answer: 1770
         }
 
-        private static void DrawMap(ref int[][] array) {
+        private static void DrawMap(int[][] array) {
             foreach (int[] line in array) {
                 foreach (int n in line) {
                     if (n == -9) {
@@ -121,7 +121,7 @@
             None, Up, Right, Down, Left, Imaginary, UpDown, LeftRight, Any
         }
 
-        private static bool PathGuard(ref int[][] array, int guardStartY, int guardStartX) {
+        private static bool PathGuard(int[][] array, int guardStartY, int guardStartX) {
             Direction dir = Direction.Up;
 
             int guardY = guardStartY;

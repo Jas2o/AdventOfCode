@@ -1,11 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Net.Sockets;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day22
     {
         //This is currently super slow

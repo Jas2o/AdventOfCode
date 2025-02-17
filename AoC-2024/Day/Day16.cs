@@ -133,7 +133,7 @@
                 }
             }
 
-            DrawMap(ref map, startX, startY, endX, endY);
+            DrawMap(map, startX, startY, endX, endY);
 
             Console.WriteLine();
             Console.WriteLine("Part 1: " + endNode.Distance);
@@ -215,7 +215,7 @@
             map[currentNode.Y][currentNode.X] = 0;
         }
 
-        private static void DrawMap(ref int[][] map, int startX, int startY, int endX, int endY) {
+        private static void DrawMap(int[][] map, int startX, int startY, int endX, int endY) {
             for (int y = 0; y < map.Length; y++) {
                 for (int x = 0; x < map[y].Length; x++) {
                     int c = map[y][x];

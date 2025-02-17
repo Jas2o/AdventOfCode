@@ -49,7 +49,7 @@ namespace AoC.Day
             if (nodeStart == null || nodeEnd == null)
                 return;
 
-            //DrawMap(ref grid, startX, startY, endX, endY);
+            //DrawMap(grid, startX, startY, endX, endY);
 
             DNode.Dijkstra(listUnvisited, listVisited);
             List<DNode> listPathNormal = DNode.GetPath(nodeEnd, 'O');
@@ -95,7 +95,7 @@ namespace AoC.Day
             Console.WriteLine();
 
             if(height < 20)
-                DrawMap(ref grid, startX, startY, endX, endY);
+                DrawMap(grid, startX, startY, endX, endY);
 
             int howManyAtLeast100 = dictionaryCheats.Where(d => stepsNormally - d.Key >= 100).Sum(d => d.Value);
 
@@ -129,7 +129,7 @@ namespace AoC.Day
             //Answer: 1014683
         }
 
-        private static void DrawMap(ref char[][] map, int startX, int startY, int endX, int endY) {
+        private static void DrawMap(char[][] map, int startX, int startY, int endX, int endY) {
             for (int y = 0; y < map.Length; y++) {
                 for (int x = 0; x < map[y].Length; x++) {
                     char c = map[y][x];

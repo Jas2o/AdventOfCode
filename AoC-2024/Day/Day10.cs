@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day10 {
         public static void Run(string file) {
             Console.WriteLine("Day 10: Hoof It" + Environment.NewLine);
@@ -42,9 +37,9 @@ namespace AoC.Day
 
                 int[][] visited = BlankVisitedMap(height, width);
                 //Recursive direction check updating visited counts
-                TryPath(ref map, ref visited, zero, -1);
+                TryPath(map, visited, zero, -1);
                 if (verbose)
-                    DrawMap(ref map, ref visited, zero);
+                    DrawMap(map, visited, zero);
 
                 //Look at counts of the nines to determine the scores
                 int sub = 0;
@@ -78,7 +73,7 @@ namespace AoC.Day
             return map;
         }
 
-        private static void DrawMap(ref int[][] map, ref int[][] visited, int[] yx) {
+        private static void DrawMap(int[][] map, int[][] visited, int[] yx) {
             for (int y = 0; y < map.Length; y++) {
                 for (int x = 0; x < map[y].Length; x++) {
                     int c = map[y][x];
@@ -104,7 +99,7 @@ namespace AoC.Day
             }
         }
 
-        private static void TryPath(ref int[][] map, ref int[][] visited, int[] yx, int previous) {
+        private static void TryPath(int[][] map, int[][] visited, int[] yx, int previous) {
             if (yx[0] < 0 || yx[0] >= map.Length || yx[1] < 0 || yx[1] >= map[0].Length)
                 return;
 
@@ -114,14 +109,10 @@ namespace AoC.Day
                 return;
             visited[yx[0]][yx[1]]++;
 
-            //Up
-            TryPath(ref map, ref visited, [yx[0]-1, yx[1]], current);
-            //Right
-            TryPath(ref map, ref visited, [yx[0], yx[1]+1], current);
-            //Down
-            TryPath(ref map, ref visited, [yx[0] + 1, yx[1]], current);
-            //Left
-            TryPath(ref map, ref visited, [yx[0], yx[1]-1], current);
+            TryPath(map, visited, [yx[0]-1, yx[1]], current); //Up
+            TryPath(map, visited, [yx[0], yx[1]+1], current); //Right
+            TryPath(map, visited, [yx[0] + 1, yx[1]], current); //Down
+            TryPath(map, visited, [yx[0], yx[1]-1], current); //Left
         }
     }
 }

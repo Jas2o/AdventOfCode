@@ -1,12 +1,4 @@
-﻿using System;
-using System.ComponentModel.Design;
-using System.Formats.Asn1;
-using System.Globalization;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-
-namespace AoC.Day
-{
+﻿namespace AoC.Day {
     public class Day12 {
         public static void Run(string file) {
             Console.WriteLine("Day 12: Garden Groups" + Environment.NewLine);
@@ -51,7 +43,7 @@ namespace AoC.Day
                             int area = 0;
                             int perim = 0;
                             string becomes = string.Format("{0}{1}", plant, islandNum);
-                            DFS_Area(ref lines, ref garden, y, x, lookFor, becomes, ref area, ref perim);
+                            DFS_Area(lines, garden, y, x, lookFor, becomes, ref area, ref perim);
                             perim = Math.Max(perim, 4);
 
                             if (area > 0) {
@@ -79,7 +71,7 @@ namespace AoC.Day
                     for (int y = 0; y < garden.Length; y++) {
                         for (int x = 0; x < garden[0].Length; x++) {
                             if (garden[y][x][0] != '.')
-                                CornerCheck(ref lines, ref garden, ref corners, y, x, pi);
+                                CornerCheck(lines, garden, corners, y, x, pi);
                         }
                     }
 
@@ -90,15 +82,8 @@ namespace AoC.Day
                     //--
 
                     if (verboseDraw) {
-                        //int lowY = corners.Min(c => c[0]) - 1;
-                        //int highY = corners.Max(c => c[0]) + 2;
-                        //int lowX = corners.Min(c => c[1]) - 1;
-                        //int highX = corners.Max(c => c[1]) + 2;
-
                         for (int y = 0; y < garden.Length; y++) {
                             for (int x = 0; x < garden[0].Length; x++) {
-                        //for (int y = lowY; y < highY; y++) {
-                            //for (int x = lowX; x < highX; x++) {
                                 if (garden[y][x] == pi) {
                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                     if (corners.Any(c => c[0] == y && c[1] == x))
@@ -125,7 +110,7 @@ namespace AoC.Day
             //Answer: 902620
         }
 
-        private static void DFS_Area(ref string[] lines, ref string[][] visited, int y, int x, string lookFor, string becomes, ref int area, ref int perimeter) {
+        private static void DFS_Area(string[] lines, string[][] visited, int y, int x, string lookFor, string becomes, ref int area, ref int perimeter) {
             //DepthFirstSearch
 
             if (y == 0 || y >= visited.Length || x == 0 || x >= visited[y].Length) {
@@ -146,31 +131,13 @@ namespace AoC.Day
                 return;
             }
 
-            /*
-            if (y == 0 || y >= visited.Length || x == 0 || x >= visited[y].Length) {
-                if(lookingAt == "..") {
-                    //perimeter++;
-                }
-                //visited[y][x] = '.';
-                return;
-            }
-            //visited[y][x] != ".."
-
-            if (visited[y][x][0] == lookFor[0] && visited[y][x][1] == '0') {
-                visited[y][x] = lookFor;
-                perimeter--;
-            } else {
-                perimeter++;
-                return;
-            }*/
-
-            DFS_Area(ref lines, ref visited, y - 1, x, lookFor, becomes, ref area, ref perimeter); // Up
-            DFS_Area(ref lines, ref visited, y, x + 1, lookFor, becomes, ref area, ref perimeter); // Right
-            DFS_Area(ref lines, ref visited, y + 1, x, lookFor, becomes, ref area, ref perimeter); // Down
-            DFS_Area(ref lines, ref visited, y, x - 1, lookFor, becomes, ref area, ref perimeter); // Left
+            DFS_Area(lines, visited, y - 1, x, lookFor, becomes, ref area, ref perimeter); // Up
+            DFS_Area(lines, visited, y, x + 1, lookFor, becomes, ref area, ref perimeter); // Right
+            DFS_Area(lines, visited, y + 1, x, lookFor, becomes, ref area, ref perimeter); // Down
+            DFS_Area(lines, visited, y, x - 1, lookFor, becomes, ref area, ref perimeter); // Left
         }
 
-        private static void CornerCheck(ref string[] lines, ref string[][] visited, ref List<int[]> corners, int y, int x, string region) {
+        private static void CornerCheck(string[] lines, string[][] visited, List<int[]> corners, int y, int x, string region) {
             if (y == 0 || x == 0 || y > lines.Length || x > lines[0].Length)
                 return;
 

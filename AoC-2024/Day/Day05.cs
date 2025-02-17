@@ -40,7 +40,7 @@
                             applicableRules.Add(rule);
                     }
 
-                    bool check = CheckAndSwapAround(applicableRules, ref pageNums);
+                    bool check = CheckAndSwapAround(applicableRules, pageNums);
                     if (!check)
                     {
                         valid = false;
@@ -51,7 +51,7 @@
                     {
                         if (verbose)
                             Console.Write(".");
-                        check = CheckAndSwapAround(applicableRules, ref pageNums);
+                        check = CheckAndSwapAround(applicableRules, pageNums);
                     }
 
                     //--
@@ -80,7 +80,7 @@
             //Answer: 6204
         }
 
-        private static bool CheckAndSwapAround(List<int[]> applicableRules, ref int[] array)
+        private static bool CheckAndSwapAround(List<int[]> applicableRules, int[] array)
         {
             bool valid = true;
 

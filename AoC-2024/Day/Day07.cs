@@ -18,8 +18,7 @@ namespace AoC.Day
             quitEarly = !tmi;
 
             long partA = CheckForBase(lines, 2);
-            Console.WriteLine("Part 1: " + partA);
-            //Answer: 5030892084481
+            Console.WriteLine("\r\nPart 1: " + partA);
 
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -28,6 +27,9 @@ namespace AoC.Day
             Console.WriteLine();
 
             long partB = CheckForBase(lines, 3);
+
+            Console.WriteLine("\r\nPart 1: " + partA);
+            //Answer: 5030892084481
             Console.WriteLine("Part 2: " + partB);
             //Answer: 91377448644679
         }
