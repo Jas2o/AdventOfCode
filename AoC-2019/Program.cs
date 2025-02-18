@@ -5,8 +5,9 @@ namespace AoC {
         static void Main(string[] args) {
             Console.Title = "Advent of Code 2019";
 
-            int daynum = 1;
-            bool test = true;
+            int daynum = 13;
+            bool test = false;
+            bool interactive = false;
 
             bool loop = true;
             string? input = string.Format("{0} {1}", daynum, (test ? "Test" : ""));
@@ -18,6 +19,7 @@ namespace AoC {
                     }
 
                     test = input.Contains('t', StringComparison.CurrentCultureIgnoreCase);
+                    interactive = input.Contains('i', StringComparison.CurrentCultureIgnoreCase);
                     string digits = new string(input.TakeWhile(c => Char.IsDigit(c)).ToArray());
                     int newdaynum = 0;
                     int.TryParse(digits, out newdaynum);
@@ -26,8 +28,10 @@ namespace AoC {
                 }
                 if (test)
                     Console.WriteLine("TEST");
+                if (interactive)
+                    Console.WriteLine("INTERACTIVE");
 
-                Run(daynum, test);
+                Run(daynum, test, interactive);
 
                 Console.Write(Environment.NewLine + "> ");
                 input = Console.ReadLine();
@@ -36,7 +40,7 @@ namespace AoC {
             }
         }
 
-        private static void Run(int daynum, bool test) {
+        private static void Run(int daynum, bool test, bool interactive) {
             string day = daynum.ToString("00");
 
             string file = "..\\..\\..\\" + (test ? "Test" : "Input") + "\\" + day + ".txt";
@@ -54,7 +58,7 @@ namespace AoC {
                     case 10: Day10.Run(file); break;
                     case 11: Day11.Run(file); break;
                     case 12: Day12.Run(file); break;
-                    case 13: Day13.Run(file); break;
+                    case 13: Day13.Run(file, interactive); break;
                     case 14: Day14.Run(file); break;
                     case 15: Day15.Run(file); break;
                     case 16: Day16.Run(file); break;

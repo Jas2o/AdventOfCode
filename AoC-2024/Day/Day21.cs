@@ -266,10 +266,7 @@ namespace AoC.Day {
                 Console.Beep(200, 100);
 
                 Console.WriteLine("Part 1: " + partA);
-                //Answer: 219254
                 Console.WriteLine("Part 2: " + partB);
-                //Answer: 264518225304496
-
                 Console.WriteLine("\r\nPress ENTER to continue with the interactive experience.");
                 Console.ReadLine();
 

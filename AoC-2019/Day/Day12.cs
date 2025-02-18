@@ -41,7 +41,7 @@
 
                 bool validateX = true, validateY = true, validateZ = true;
                 foreach (Moon moon in moons) {
-                    if(!moon.IsInitialX) validateX = false;
+                    if (!moon.IsInitialX) validateX = false;
                     if (!moon.IsInitialY) validateY = false;
                     if (!moon.IsInitialZ) validateZ = false;
                 }
