@@ -5,8 +5,8 @@ namespace AoC {
         static void Main(string[] args) {
             Console.Title = "Advent of Code 2019";
 
-            int daynum = 13;
-            bool test = false;
+            int daynum = 14;
+            bool test = true;
             bool interactive = false;
 
             bool loop = true;
