@@ -56,6 +56,19 @@
             Verbose = false;
         }
 
+        public void UnsafeReset(long[] initial, List<int> listReset) {
+            pos = 0;
+            relativeBase = 0;
+            Halted = false;
+            Waiting = false;
+            inputQueue.Clear();
+            outputQueue.Clear();
+            OutputLast = -1;
+
+            foreach (int i in listReset)
+                memory[i] = initial[i];
+        }
+
         public bool Run() {
             Waiting = false;
             while (!(Halted || Waiting)) {
