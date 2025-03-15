@@ -157,15 +157,17 @@
             }
         }
 
-        public static List<DNode> GetPath(DNode? nodeEnd) {
+        public static List<DNode> GetPath(DNode? nodeEnd, bool Reverse = false) {
             List<DNode> listPath = new List<DNode>();
 
             DNode nodeCurrent = nodeEnd;
-            List<DNode> listPathNormal = new List<DNode>();
             while (nodeCurrent != null) {
                 listPath.Add(nodeCurrent);
                 nodeCurrent = nodeCurrent.Previous;
             }
+
+            if (Reverse)
+                listPath.Reverse();
 
             return listPath;
         }
