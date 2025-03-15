@@ -224,7 +224,7 @@ namespace AoC.Day {
                         else {
                             partB = value;
                             break;
-                        }   
+                        }
                     }
 
                     string input2 = sb.ToString();

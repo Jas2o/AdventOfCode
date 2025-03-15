@@ -18,7 +18,7 @@ Perhaps during future events I'll revisit some of the worst performing solutions
 - 2017 was started on January 8th 2025 and completed on January 14th 2025.
 - 2018 was started on January 15th 2025, is currently paused on Day 17.
   - It was on January 19th 2025 that **Day 15 ruined my life**, easily the most evil puzzle I have encounted so far and completely killed my drive to work on puzzles daily.
-- 2019 was started on Febuary 5th 2025 to distract myself from 2018, **am taking it very slow**.
+- 2019 was started on Febuary 5th 2025 to distract myself from 2018, was taking it slow, completed on March 15th 2025.
 
 ## Additional notes
 As per rules on Advent of Code's website: inputs and puzzle text (except titles) are not included in this repo.
