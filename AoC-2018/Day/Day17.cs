@@ -29,6 +29,8 @@
 
             int minY = grid.Keys.Min(k => k.Item2);
             int maxY = grid.Keys.Max(k => k.Item2);
+
+            //Part 1
             int springX = 500;
             grid.Add((springX, 0), '+');
 
@@ -152,9 +154,61 @@
                 }
             }
 
-            Dictionary<(int, int), char> gridA = grid.ToDictionary();
+            //Part 2
+            grid[(springX, 0)] = '.';
+            IEnumerable<KeyValuePair<(int, int), char>> removeLeft = grid.Where(g => g.Value == '\\');
+            IEnumerable<KeyValuePair<(int, int), char>> removeRight = grid.Where(g => g.Value == '/');
+            foreach(KeyValuePair<(int, int), char> hint in removeLeft) {
+                grid[hint.Key] = '.';
+                int x = hint.Key.Item1;
+                while(true) {
+                    x--;
+                    (int x, int) key = (x, hint.Key.Item2);
+                    grid.TryGetValue(key, out char c);
+                    if (c == '\0' || c == 'Y' || c == '/')
+                        break;
+                    grid[key] = '.';
+                }
+            }
+            foreach (KeyValuePair<(int, int), char> hint in removeRight) {
+                grid[hint.Key] = '.';
+                int x = hint.Key.Item1;
+                while (true) {
+                    x++;
+                    (int x, int) key = (x, hint.Key.Item2);
+                    grid.TryGetValue(key, out char c);
+                    if (c == '\0' || c == 'Y' || c == '\\')
+                        break;
+                    grid[key] = '.';
+                }
+            }
 
-            int partA = CountWater(grid, minY, maxY);
+            IEnumerable<KeyValuePair<(int, int), char>> removeDown = grid.Where(g => g.Value == '|');
+            foreach (KeyValuePair<(int, int), char> hint in removeDown) {
+                bool remove = true;
+
+                int y = hint.Key.Item2;
+                while (true) {
+                    y++;
+                    (int x, int) key = (hint.Key.Item1, y);
+                    grid.TryGetValue(key, out char c);
+                    if (c == 'X' || c == 'Y') {
+                        remove = false;
+                        break;
+                    } else if (c == '\0' || c == '.')
+                        break;
+                }
+
+                if(remove)
+                    grid[hint.Key] = '.';
+            }
+
+            //--
+
+            int partA = CountWater(grid, minY, maxY, true);
+            int partB = CountWater(grid, minY, maxY, false);
+
+            //--
 
             int minX = grid.Keys.Min(k => k.Item1) - 1;
             int maxX = grid.Keys.Max(k => k.Item1) + 1;
@@ -162,7 +216,7 @@
 
             if (width > Console.WindowWidth) {
                 Console.WriteLine("Part 1: " + partA);
-                Console.WriteLine("Part 2: " + 0);
+                Console.WriteLine("Part 2: " + partB);
                 Console.WriteLine();
                 Console.WriteLine("Please resize then press any key to draw visual (or ESC to not).");
 
@@ -173,11 +227,11 @@
                 }
             }
 
-            DrawMap(gridA);
+            DrawMap(grid);
             Console.WriteLine("Part 1: " + partA);
             //Answer: 30384
-            Console.WriteLine("Part 2: " + 0);
-            //Answer: 
+            Console.WriteLine("Part 2: " + partB);
+            //Answer: 24479
         }
 
         private static void DrawMap(Dictionary<(int, int), char> grid, int reqMaxY = -1, int reqMinY = -1) {
@@ -198,7 +252,10 @@
                         if(c == 'X' || c == 'Y')
                             Console.Write(c);
                         else {
-                            Console.BackgroundColor = ConsoleColor.Blue;
+                            if(c == '.')
+                                Console.BackgroundColor = ConsoleColor.Blue;
+                            else
+                                Console.BackgroundColor = ConsoleColor.DarkBlue;
                             Console.Write(c);
                             Console.ResetColor();
                         }
@@ -210,18 +267,20 @@
             Console.WriteLine();
         }
 
-        private static int CountWater(Dictionary<(int, int), char> grid, int minY, int maxY) {
+        private static int CountWater(Dictionary<(int, int), char> grid, int minY, int maxY, bool dotIsWater) {
             int minX = grid.Keys.Min(k => k.Item1) - 1;
-            //int minY = grid.Keys.Min(k => k.Item2);
             int maxX = grid.Keys.Max(k => k.Item1) + 1;
-            //int maxY = grid.Keys.Max(k => k.Item2);
+
+            char dot = '.';
+            if (dotIsWater)
+                dot = '!';
 
             int water = 0;
             for (int y = minY; y <= maxY; y++) {
                 for (int x = minX; x <= maxX; x++) {
                     if (grid.ContainsKey((x, y))) {
                         char c = grid[(x, y)];
-                        if (c != '#' && c != 'X' && c != 'Y')
+                        if (c != '#' && c != 'X' && c != 'Y' && c != dot)
                             water++;
                     }
                 }
