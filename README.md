@@ -16,9 +16,19 @@ Perhaps during future events I'll revisit some of the worst performing solutions
 - 2015 was started on December 8th 2024 and completed on December 31st 2024.
 - 2016 was started on December 31st 2014 and completed on January 8th 2025.
 - 2017 was started on January 8th 2025 and completed on January 14th 2025.
-- 2018 was started on January 15th 2025, is currently paused on Day 17.
-  - It was on January 19th 2025 that **Day 15 ruined my life**, easily the most evil puzzle I have encounted so far and completely killed my drive to work on puzzles daily.
+- 2018 was started on January 15th 2025, and completed on March 25th 2025.
+  - Day 15 was super evil, I didn't get an accepted answer for over a week.
+  - Day 17 looks innocent but compounded feelings of defeat in me, it was put on pause for over a month before revisiting from scratch.
+  - Day 19 was after the hiatus, and math did not make me feel any better about returning without help.
+  - Day 21 has the worst runtime length.
+  - Day 22 was the second last completed, it had a lot of back and forth with code changes and website answer attempts. Suspect there's something still wrong with the code for other inputs.
+  - Day 23 was more math that was beyond my abilities without help.
 - 2019 was started on Febuary 5th 2025 to distract myself from 2018, was taking it slow, completed on March 15th 2025.
+  - Day 16 I could not optimize without help.
+  - Day 18 was the last puzzle completed, it took a few days to optimize enough to get an answer.
+  - Day 21 isn't truely solved as it has baked in shortcut for my input.
+  - Day 22 required math knowledge that I would never be able to work out on my own.
+  - Day 25 I didn't make solving automatic, but it was fun making the game playable and getting to the answer.
 
 ## Additional notes
 As per rules on Advent of Code's website: inputs and puzzle text (except titles) are not included in this repo.
