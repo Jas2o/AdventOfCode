@@ -25,9 +25,9 @@
                     continue;
 
                 last.Ignore = true;
-                List<DNode> neighbours = GetNeighbors(listNodes, last);
+                List<DNode> neighbors = GetNeighbors(listNodes, last);
 
-                foreach (DNode neighbour in neighbours) {
+                foreach (DNode neighbour in neighbors) {
                     if (neighbour.Ignore)
                         continue;
                     if (neighbour.Distance < depth)
@@ -61,9 +61,9 @@
                 if (depth >= depthLimit)
                     return null;
 
-                List<DNode> neighbours = GetNeighbors(listNodes, last);
+                List<DNode> neighbors = GetNeighbors(listNodes, last);
 
-                foreach (DNode neighbour in neighbours) {
+                foreach (DNode neighbour in neighbors) {
                     //if (givenState.Contains(neighbour) || neighbour.Value != valueMatch)
                     //continue;
                     if (neighbour.Distance != last.Distance + 1)

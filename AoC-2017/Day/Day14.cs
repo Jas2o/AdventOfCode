@@ -62,8 +62,8 @@ namespace AoC.Day
         }
 
         private static void FloodFill(List<DNode> nodes, DNode node, int regionID) {
-            List<DNode> neighbours = DNode.GetNeighbors(nodes, node);
-            foreach (DNode n in neighbours) {
+            List<DNode> neighbors = DNode.GetNeighbors(nodes, node);
+            foreach (DNode n in neighbors) {
                 if (n.Distance != 0)
                     continue;
 

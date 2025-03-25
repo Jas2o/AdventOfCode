@@ -214,7 +214,7 @@ namespace AoC.Day {
 
             while (queue.Any()) {
                 DNode currentNode = queue.Dequeue();
-                List<DNode> neighbours = DNode.GetNeighbors(nodes, currentNode);
+                List<DNode> neighbors = DNode.GetNeighbors(nodes, currentNode);
 
                 if (currentNode.Distance != 0 && currentNode.Value != '.') {
                     if (currentNode.Value != not) {
@@ -223,7 +223,7 @@ namespace AoC.Day {
                     }
                 } else {
                     if (hits.Count == 0) {
-                        foreach (DNode n in neighbours) {
+                        foreach (DNode n in neighbors) {
                             if (n.Distance == int.MaxValue && !n.Ignore) {
                                 queue.Enqueue(n);
                                 n.Ignore = true;
@@ -232,7 +232,7 @@ namespace AoC.Day {
                     }
                 }
 
-                int minDist = neighbours.Min(n => n.Distance);
+                int minDist = neighbors.Min(n => n.Distance);
                 if(currentNode != homeNode && currentNode.Value != not)
                     currentNode.Distance = minDist + 1;
             }

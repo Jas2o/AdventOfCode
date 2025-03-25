@@ -34,12 +34,12 @@ namespace AoC.Day
             Dictionary<DNode, (string,char)> portals = new Dictionary<DNode, (string,char)>();
             DNode aa = null, zz = null;
             foreach(DNode letter in nodes.Where(n => n.Value != '.')) {
-                List<DNode> neighbours = DNode.GetNeighbors(nodes, letter);
-                if (neighbours.Any(n => n.Value == '.'))
+                List<DNode> neighbors = DNode.GetNeighbors(nodes, letter);
+                if (neighbors.Any(n => n.Value == '.'))
                     continue;
                 //We've got a letter that's on the outside.
                 letter.Ignore = true; //Only the "inner" letter is needed for pathfinding.
-                DNode n = neighbours[0];
+                DNode n = neighbors[0];
 
                 if(n.Value == letter.Value) {
                     if (letter.Value == 'A')
@@ -218,8 +218,8 @@ namespace AoC.Day
         }
 
         private static void FloodFill(List<DNode> nodes, Dictionary<DNode, (string, char)> portals, DNode node, int regionID, List<((string, char), DNode)> hits) {
-            List<DNode> neighbours = DNode.GetNeighbors(nodes, node);
-            foreach (DNode n in neighbours) {
+            List<DNode> neighbors = DNode.GetNeighbors(nodes, node);
+            foreach (DNode n in neighbors) {
                 if (n.Ignore || n.Distance != int.MaxValue)
                     continue;
 

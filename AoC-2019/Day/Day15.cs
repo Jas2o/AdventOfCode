@@ -144,16 +144,16 @@ namespace AoC.Day {
 
             while (queue.Any()) {
                 DNode currentNode = queue.Dequeue();
-                List<DNode> neighbours = DNode.GetNeighbors(nodes, currentNode);
+                List<DNode> neighbors = DNode.GetNeighbors(nodes, currentNode);
 
-                foreach (DNode n in neighbours) {
+                foreach (DNode n in neighbors) {
                     if (n.Distance == int.MaxValue && !n.Ignore) {
                         queue.Enqueue(n);
                         n.Ignore = true;
                     }
                 }
 
-                int minDist = neighbours.Min(n => n.Distance);
+                int minDist = neighbors.Min(n => n.Distance);
                 if (currentNode != homeNode)
                     currentNode.Distance = minDist + 1;
             }

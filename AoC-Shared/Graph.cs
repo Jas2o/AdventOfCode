@@ -45,14 +45,13 @@
 
                 last.Ignore = true;
                 if (!results.Any()) {
-                    List<DNode> neighbours = GetNeighbors(listNodes, last);
+                    List<DNode> neighbors = GetNeighbors(listNodes, last);
 
-                    foreach (DNode neighbour in neighbours) {
+                    foreach (DNode neighbour in neighbors) {
                         if (neighbour.Distance >= depth)
                             continue;
                         if (neighbour.Value != '.' && neighbour.Value != start.Value)
                             continue;
-
                         List<DNode> copy = givenState.ToList();
                         copy.Add(neighbour);
                         queueState.Enqueue(new Tuple<int, List<DNode>>(depth - 1, copy));
