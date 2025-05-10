@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using static AoC.Day.Day09;
 
 namespace AoC.Day
 {
