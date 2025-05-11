@@ -34,6 +34,7 @@ Perhaps during future events I'll revisit some of the worst performing solutions
   - Day 17 performs terribly. It took me a while because the similarity to 2019 Day 24 threw me off when it came to a key difference.
   - Day 19 is evil. My fault for avoiding regex for so long when I already had the pattern most of the way there.
   - Day 20 is nuts, while it took a few days it was my favourite puzzle of this year.
+- 2021 was started on May 11th 2025.
 
 ## Additional notes
 As per rules on Advent of Code's website: inputs and puzzle text (except titles) are not included in this repo.
