@@ -100,6 +100,7 @@ Global
 		AoC-Shared\AoC-Shared.projitems*{68c63b48-87e7-4de3-8ccc-d244d0849f51}*SharedItemsImports = 5
 		AoC-Shared\AoC-Shared.projitems*{9aba4bf9-a704-41b6-9da3-9f51d7c29a68}*SharedItemsImports = 5
 		AoC-Shared\AoC-Shared.projitems*{9c4746e8-ec24-4e10-a781-611e23235b4f}*SharedItemsImports = 13
+		AoC-Shared\AoC-Shared.projitems*{b4e1ec44-c6be-4df0-8dc3-e65dc16eebad}*SharedItemsImports = 5
 		AoC-Shared\AoC-Shared.projitems*{e9389b2c-2721-4f72-a243-1c351f533bd7}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
