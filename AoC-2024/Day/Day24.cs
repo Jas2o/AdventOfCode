@@ -54,9 +54,9 @@ namespace AoC.Day {
                 zb[i] = zs[i].Value == 1;
             //Turn them into numbers.
             long[] xyz = [
-                Number.GetIntFromBitArray(xb),
-                Number.GetIntFromBitArray(yb),
-                Number.GetIntFromBitArray(zb), //this should be same as part1
+                Number.GetLongFromBitArray(xb),
+                Number.GetLongFromBitArray(yb),
+                Number.GetLongFromBitArray(zb), //this should be same as part1
             ];
             Console.WriteLine("     X = {0} // {1}", xyz[0], Convert.ToString(xyz[0], 2));
             Console.WriteLine("     Y = {0} // {1}", xyz[1], Convert.ToString(xyz[1], 2));

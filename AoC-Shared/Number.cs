@@ -15,8 +15,14 @@ namespace AoC.Shared {
             return result;
         }
 
-        public static long GetIntFromBitArray(BitArray bitArray) {
-            var array = new byte[8];
+        public static int GetIntFromBitArray(BitArray bitArray) {
+            var array = new byte[32];
+            bitArray.CopyTo(array, 0);
+            return BitConverter.ToInt32(array, 0);
+        }
+
+        public static long GetLongFromBitArray(BitArray bitArray) {
+            var array = new byte[64];
             bitArray.CopyTo(array, 0);
             return BitConverter.ToInt64(array, 0);
         }
