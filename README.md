@@ -35,6 +35,10 @@ Perhaps during future events I'll revisit some of the worst performing solutions
   - Day 19 is evil. My fault for avoiding regex for so long when I already had the pattern most of the way there.
   - Day 20 is nuts, while it took a few days it was my favourite puzzle of this year.
 - 2021 was started on May 11th 2025.
+  - Day 8 needed sleep to realise how to approach it.
+  - Day 15 took time failing to reuse 2024 pathfinding until landing on reusing 2018 Day 22.
+  - Day 18 was very difficult and unfortunately doesn't make use of special structure for solving part of it.
+  - Day 21 was a huge demotivator.
 
 ## Additional notes
 As per rules on Advent of Code's website: inputs and puzzle text (except titles) are not included in this repo.
