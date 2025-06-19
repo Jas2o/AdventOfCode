@@ -54,7 +54,7 @@ namespace AoC.Day {
                 //Console.WriteLine(doors);
 
                 if(point.Y > 0 && open.Contains(doors[0]))
-                    queue.Enqueue(new Tuple<string, Point>(path+"U", new Point(point.X, point.Y - 1)));
+                    queue.Enqueue(new Tuple<string, Point>(path + "U", new Point(point.X, point.Y - 1)));
             
                 if (point.Y < 3 && open.Contains(doors[1]))
                     queue.Enqueue(new Tuple<string, Point>(path + "D", new Point(point.X, point.Y + 1)));

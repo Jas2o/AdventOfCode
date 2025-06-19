@@ -39,6 +39,7 @@ Perhaps during future events I'll revisit some of the worst performing solutions
   - Day 15 took time failing to reuse 2024 pathfinding until landing on reusing 2018 Day 22.
   - Day 18 was very difficult and unfortunately doesn't make use of special structure for solving part of it.
   - Day 21 was a huge demotivator.
+  - Day 22 was really difficult and also around the time I was sick.
 
 ## Additional notes
 As per rules on Advent of Code's website: inputs and puzzle text (except titles) are not included in this repo.
