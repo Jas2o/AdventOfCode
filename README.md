@@ -40,6 +40,8 @@ Perhaps during future events I'll revisit some of the worst performing solutions
   - Day 18 was very difficult and unfortunately doesn't make use of special structure for solving part of it.
   - Day 21 was a huge demotivator.
   - Day 22 was really difficult and also around the time I was sick.
+  - Day 23 still needs to be optimised.
+  - Day 24 took me forever for various silly reasons.
 
 ## Additional notes
 As per rules on Advent of Code's website: inputs and puzzle text (except titles) are not included in this repo.
